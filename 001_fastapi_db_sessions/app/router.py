@@ -21,8 +21,8 @@ def sync_execute_query(session, query: str):
 @root_router.get("/")
 async def get_async(session_manager: AsyncSessionManager = Depends(get_async_session_manager)):
     tasks = [
-        execute_query(session_manager, "SELECT pg_sleep(0.1)"),
-        execute_query(session_manager, "SELECT pg_sleep(0.1)")
+        execute_query(session_manager, "SELECT version()"),
+        execute_query(session_manager, "SELECT now()")
     ]
 
     query_results = await asyncio.gather(*tasks)
