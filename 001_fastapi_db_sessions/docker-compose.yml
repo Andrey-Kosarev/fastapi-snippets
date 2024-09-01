@@ -1,0 +1,25 @@
+
+
+services:
+  python-app:
+    restart: always
+    build:
+      context: app
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+
+  database:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: sample_db
+      POSTGRES_PASSWORD: postgres
+
